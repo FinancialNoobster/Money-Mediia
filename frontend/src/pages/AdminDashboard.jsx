@@ -2,7 +2,11 @@ import React from 'react'
 import { useAuth } from '../context/authContext.jsx'
 
 const AdminDashboard = () => {
-  const {user} = useAuth()
+  const {user, logout} = useAuth()
+
+  const handleClick = async () =>{
+    logout()
+  }
  
   return (
     <div>
@@ -13,6 +17,7 @@ const AdminDashboard = () => {
       Role: {user.role}  </pre> 
       <pre>
       Name: {user.name}  </pre> 
+      <button onClick={handleClick}>Logout</button>
     </div>
   )
 }
