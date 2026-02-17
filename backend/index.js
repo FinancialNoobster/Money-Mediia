@@ -5,13 +5,7 @@ import connectToDatabase from './db/db.js'
 
 const app = express()
 
-const corsOptions = {
-  origin: true,
-  credentials: true,
-}
-
-app.use(cors(corsOptions))
-app.options(/.*/, cors(corsOptions))
+app.use(cors())
 app.use(express.json())
 app.use('/api/auth', authRouter)
 
