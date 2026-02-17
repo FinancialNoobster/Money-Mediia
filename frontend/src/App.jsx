@@ -2,6 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/login.jsx";
 import AdminDashboard from "./pages/AdminDashboard.jsx";
 import EmployeeDashboard from "./pages/EmployeeDashboard.jsx";
+import PrivateRoutes from "./utils/PrivateRoutes.jsx";
+import RoleBasedRoutes from "./utils/RoleBasedRoutes.jsx";
 
 function App() {
   return(
@@ -11,7 +13,13 @@ function App() {
         </Route>
         <Route path="/login" element={<Login />}>
         </Route>
-        <Route path="/admin-dashboard" element={<AdminDashboard />}>
+        <Route path="/admin-dashboard" element={
+          <PrivateRoutes>
+           <RoleBasedRoutes requiredRole={["admin"]}>
+            <AdminDashboard />
+           </RoleBasedRoutes>
+          </PrivateRoutes>
+          }>
         </Route>
         <Route path="/employee-dashboard" element={<EmployeeDashboard />}></Route>
       </Routes>
