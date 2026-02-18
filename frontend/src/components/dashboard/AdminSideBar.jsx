@@ -10,7 +10,8 @@ const AdminSideBar = () => {
       </div>
       <div>
         <NavLink to="/admin-dashboard"
-        className={({isActive}) => `${isActive ? "bg-teal-500 " : " "}flex items-center space-x-5 block py-2.5 px-4 rounded `}>
+        className={({isActive}) => `${isActive ? "bg-teal-500 " : " "}flex items-center space-x-5 block py-2.5 px-4 rounded `}
+        end >
             <FaTachometerAlt />
             <span>Dashboard</span>
         </NavLink>
@@ -19,8 +20,8 @@ const AdminSideBar = () => {
             <FaUsers />
             <span>Employees</span>
         </NavLink>
-        <NavLink to="/admin-dashboard"
-        className="flex items-center space-x-5 block py-2.5 px-4 rounded">
+        <NavLink to="/admin-dashboard/departments"
+         className={({isActive}) => `${isActive ? "bg-teal-500 " : " "}flex items-center space-x-5 block py-2.5 px-4 rounded `}>
             <FaBuilding />
             <span>Departments</span>
         </NavLink>
