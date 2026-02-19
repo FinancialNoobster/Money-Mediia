@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from "axios"
 
 const AddDepartment = () => {
   const [department, setDepartment] =useState({
@@ -17,7 +18,7 @@ const AddDepartment = () => {
       const response = await axios.post("http://localhost:5000/api/department/add", 
         department, {
         headers: {
-          "Authoriztion": `Bearer ${localStorage.getItem('token')}`
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
         }}
       )
       if (response.data.success){
@@ -36,16 +37,16 @@ const AddDepartment = () => {
           <div>
             <label htmlFor="dep_name"
             className='text-sm font-medium text-gray-700'>Department Name</label>
-            <input type="text" placeholder='Enter Dep Name' 
+            <input type="text" name="dep_name" placeholder='Enter Dep Name' 
             className='mt-1 w-full p-2 border border-gray-300 rounded-md'
-            onClick={handleChange} />
+            onChange={handleChange} />
           </div>
           <div className='mt-3'>
             <label htmlFor="description"
             className='block text-sm font-medium text-gray-700'>Description</label>
             <textarea name="description" placeholder='Description'
             className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
-            rows="4" onClick={handleChange} ></textarea>
+            rows="4" onChange={handleChange}  ></textarea>
           </div>
           <button
           className='w-full mt-6 bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded'>Add Department</button>
