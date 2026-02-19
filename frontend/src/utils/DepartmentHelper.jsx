@@ -16,9 +16,11 @@ export const columns = [
     }
 ]
 
-export const DepartmentButton = ({_id onDepartmentDelete}) => {
+export const DepartmentButton = ({_id, onDepartmentDelete}) => {
     const navigate = useNavigate()
     const handleDelete = async (id) => {
+        const confirm = window.confirm("Do you want to Delete?")
+        if (confirm) {        
         try{
             const response = await axios.delete(
             `http://localhost:5000/api/departments/${id}`,
@@ -27,12 +29,13 @@ export const DepartmentButton = ({_id onDepartmentDelete}) => {
                 "Authorization": `Bearer ${localStorage.getItem('token')}`
         }});
         if (response.data.success) {
-            onDepartmentDelete(id)
+            onDepartmentDelete(_id)
         }
         } catch (error) {
             if(error.response && !error.response.data.success){
                  alert(error.response.data.error)
             }
+        }
         }
     };
     return (
