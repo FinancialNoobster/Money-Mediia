@@ -47,7 +47,7 @@ const DepartmentList = () => {
         <Link to="/admin-dashboard/add-department" className='px-4 py-1 bg-gray-500 hover:bg-gray-400 rounded text-white'>
         Add New Department</Link>
       </div>
-      <div>
+      <div className='mt-5'>
         <DataTable 
          columns={columns}
          data={department}
