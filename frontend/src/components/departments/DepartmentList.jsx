@@ -9,6 +9,7 @@ import axios from 'axios'
 const DepartmentList = () => {
   const [department, setDepartment] = useState([])
   const [depLoading, setDepLoading] = useState(false)
+  const [filteredDepartments, setFilteredDepartments] = useState([])
 
   const onDepartmentDelete = async (id) => {
     const data = department.filter(dep => dep._id !== id)
@@ -35,6 +36,7 @@ const DepartmentList = () => {
             }
           ))
           setDepartment(data)
+          setFilteredDepartments(data)
         }
       } catch (error){
         if(error.response && !error.response.data.success){
@@ -46,6 +48,12 @@ const DepartmentList = () => {
     }
     fetchDepartmnets();
   }, [])
+
+  const filterDepartments = (e) => {
+    const records = department.filter((dep) =>
+    dep.dep_name.toLowerCase().includes(e.target.value.toLowerCase()))
+    setFilteredDepartments(records)
+  }
   return (
     <>{depLoading ? <div>Loading...</div> :
     <div className='p-5'>
@@ -53,14 +61,16 @@ const DepartmentList = () => {
       <h3 className='text-2xl font-bold'>Manage Departments</h3>
       </div>
       <div className='flex justify-between items-center '>
-        <input type="text" placeholder='Search By Dep Name' className='px-4 py-0.5 border'/>
+        <input type="text" placeholder='Search By Dep Name' className='px-4 py-0.5 border'
+        onChange={filterDepartments}/>
         <Link to="/admin-dashboard/add-department" className='px-4 py-1 bg-gray-500 hover:bg-gray-400 rounded text-white'>
         Add New Department</Link>
       </div>
       <div className='mt-5'>
         <DataTable 
          columns={columns}
-         data={department}
+         data={filteredDepartments}
+         pagination
         />
       </div>
     </div>
