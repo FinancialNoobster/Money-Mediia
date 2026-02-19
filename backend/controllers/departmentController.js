@@ -15,6 +15,8 @@ const getDepartments = async (req, res) => {
 const addDepartment = async (req, res) => {
     try {
         const {dep_name, description} = req.body; 
+        console.log({dep_name})
+        console.log({description})        
         const newDep = new Department({
             dep_name,
             description
@@ -28,7 +30,7 @@ const addDepartment = async (req, res) => {
         return res.status(500).json({
             success: false,
             error: "add department server error"
-        })
+        }), console.log(error)
     }
 }
 

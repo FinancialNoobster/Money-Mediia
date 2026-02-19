@@ -15,7 +15,7 @@ const AddDepartment = () => {
   const handleSubmit = async (e) =>{
     e.preventDefault()
     try{
-      const response = await axios.post("http://localhost:5000/api/department/add", 
+      const response = await axios.post("http://localhost:5000/api/departments/add", 
         department, {
         headers: {
           "Authorization": `Bearer ${localStorage.getItem('token')}`
@@ -46,7 +46,7 @@ const AddDepartment = () => {
             className='block text-sm font-medium text-gray-700'>Description</label>
             <textarea name="description" placeholder='Description'
             className='mt-1 p-2 block w-full border border-gray-300 rounded-md'
-            rows="4" onChange={handleChange}  ></textarea>
+            rows="4" onChange={handleChange}></textarea>
           </div>
           <button
           className='w-full mt-6 bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded'>Add Department</button>
