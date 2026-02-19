@@ -8,9 +8,11 @@ import axios from 'axios'
 
 const DepartmentList = () => {
   const [department, setDepartment] = useState([])
+  const [depLoading, setDepLoading] = useState(false)
 
   useEffect(() => {
     const fetchDepartmnets = async () => {
+      setDepLoading(true)
       try {
         const response = await axios.get('http://localhost:5000/api/departments',{
           headers: {
@@ -24,7 +26,7 @@ const DepartmentList = () => {
               _id: dep._id,
               sno: sno++,
               dep_name: dep.dep_name,
-              action: (<DepartmentButton />)
+              action: (<DepartmentButton _id={dep._id}/>)
             }
           ))
           setDepartment(data)
@@ -33,11 +35,14 @@ const DepartmentList = () => {
         if(error.response && !error.response.data.success){
         alert(error.response.data.error)
       }
+      } finally{
+        setDepLoading(false)
       }
     }
     fetchDepartmnets();
   }, [])
   return (
+    <>{depLoading ? <div>Loading...</div> :
     <div className='p-5'>
     <div className='text-center '>
       <h3 className='text-2xl font-bold'>Manage Departments</h3>
@@ -54,6 +59,7 @@ const DepartmentList = () => {
         />
       </div>
     </div>
+    }</>
   )
 }
 
