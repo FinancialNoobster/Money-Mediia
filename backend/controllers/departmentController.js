@@ -14,9 +14,7 @@ const getDepartments = async (req, res) => {
 
 const addDepartment = async (req, res) => {
     try {
-        const {dep_name, description} = req.body; 
-        console.log({dep_name})
-        console.log({description})        
+        const {dep_name, description} = req.body;        
         const newDep = new Department({
             dep_name,
             description
@@ -34,7 +32,7 @@ const addDepartment = async (req, res) => {
     }
 }
 
-const editDepartment = async (req, res) => {
+const getDepartment = async (req, res) => {
     try {
         const {id} = req.params;
         const department = await Department.findById({_id: id})
@@ -47,4 +45,24 @@ const editDepartment = async (req, res) => {
     }
 }
 
-export {addDepartment, getDepartments, editDepartment}
+const updateDepartment = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const {dep_name, description} = req.body;     
+        const updateDep = await Department.findByIdAndUpdate({_id: id}, {
+            dep_name,
+            description
+        })
+        return res.status(200).json({
+            success: true,
+            updateDep
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: "edit department server error"
+        }), console.log(error)
+    }
+} 
+
+export {addDepartment, getDepartments, getDepartment, updateDepartment}
