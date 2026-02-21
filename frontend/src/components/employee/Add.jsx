@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { fetchDepartmnets } from '../../utils/EmployeeHelper.jsx'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const Add = () => {
 const [departments, setDepartments] = useState([])
 const [formData, setFormData] = useState({})
+const navigate = useNavigate()
     useEffect (() => {
         const getDepartments = async () => {
             const departments = await fetchDepartmnets()
@@ -14,7 +16,7 @@ const [formData, setFormData] = useState({})
     }, [])
 
     const handlechange = (e) => {
-        const {name, value, files} = e.targer
+        const {name, value, files} = e.target
         if (name == "image") {
             setFormData ((prevData) => ({...prevData, [name]: files[0]}))
         } else {
