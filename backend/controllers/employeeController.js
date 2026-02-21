@@ -71,4 +71,16 @@ const addEmployee = async (req, res) => {
     }
 }
 
-export {addEmployee, upload}
+const getEmployees = async (req, res) => {
+    try {
+        const employees = await Employee.find().populate("userId", "name email profileImage").populate("department", "dep_name")
+        return res.status(200).json({success: true, employees})
+    } catch(error){
+        return res.status(500).json({
+            success: false,
+            error: "get employees server error"
+        }), console.log(error)
+    }
+}
+
+export {addEmployee, upload, getEmployees}
