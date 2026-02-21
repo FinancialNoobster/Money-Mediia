@@ -22,7 +22,7 @@ export const columns = [
     {
         name: "Department",
         selector: (row) => row.dep_name,
-        width: "100px"
+        width: "120px"
     },
     {
         name: "DOB",
