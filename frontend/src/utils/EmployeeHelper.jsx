@@ -61,7 +61,7 @@ export const fetchDepartmnets = async () => {
     return (
         <div className="flex space-x-3 ">
             <button className="px-3 py-1 bg-gray-500 hover:bg-gray-400 text-white font-bold py-2 px-4 rounded"
-                onClick={() => navigate(`/admin-dashboard/department/${_id}`)}
+                onClick={() => navigate(`/admin-dashboard/employees/${_id}`)}
             >View</button>
             <button className="px-3 py-1 bg-blue-500 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
             >Edit</button>
