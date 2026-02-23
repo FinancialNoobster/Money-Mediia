@@ -64,10 +64,13 @@ export const fetchDepartmnets = async () => {
                 onClick={() => navigate(`/admin-dashboard/employees/${_id}`)}
             >View</button>
             <button className="px-3 py-1 bg-blue-500 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded"
+                onClick={() => navigate(`/admin-dashboard/employees/edit/${_id}`)}
             >Edit</button>
             <button className="px-3 py-1 bg-yellow-500 hover:bg-yellow-300 text-white font-bold py-2 px-4 rounded"
+                onClick={() => navigate(`/admin-dashboard/employees/Salary/${_id}`)}
             >Salary</button>
             <button className="px-3 py-1 bg-red-500 hover:bg-red-300 text-white font-bold py-2 px-4 rounded"
+                onClick={() => navigate(`/admin-dashboard/employees/Leave/${_id}`)}
             >Leave</button>
         </div>
     )
