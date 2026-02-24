@@ -54,7 +54,7 @@ const List = () => {
       </div>
       <div>
         <DataTable columns={columns} data={employees}
-        progressPending={empLoading}/>
+        progressPending={empLoading} pagination/>
       </div>
     </div>
   )
