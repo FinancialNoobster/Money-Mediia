@@ -1,3 +1,7 @@
+import dotenv from 'dotenv'
+
+dotenv.config()
+
 import express from 'express'
 import cors from 'cors'
 import authRouter from './routes/auth.js'
@@ -16,8 +20,14 @@ app.use('/api/employee', employeeRouter)
 
 const PORT = process.env.PORT || 5000
 
-connectToDatabase().then(() => {
+connectToDatabase()
+  .then(() => {
     app.listen(PORT, () => {
-        console.log(`Server is Running on port ${PORT}`)
-    })
-})
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Database connection failed:", error);
+    process.exit(1); // stop server if DB fails
+  });
+
