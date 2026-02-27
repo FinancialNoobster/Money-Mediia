@@ -14,6 +14,7 @@ import View from "./components/employee/View.jsx";
 import Edit from "./components/employee/Edit.jsx";
 import Salary from "./components/employee/Salary.jsx";
 import Leave from "./components/employee/Leave.jsx";
+import AddSalary from "./components/salary/add.jsx";
 
 function App() {
   return(
@@ -49,6 +50,8 @@ function App() {
             <Route path="/admin-dashboard/employees/salary/:id" element = {<Salary />}>
             </Route>
             <Route path="/admin-dashboard/employees/leave/:id" element = {<Leave />}>
+            </Route>
+            <Route path="/admin-dashboard/salary/add" element= {<AddSalary />}>
             </Route>
         </Route>
         <Route path="/employee-dashboard" element={<EmployeeDashboard />}></Route>
