@@ -11,7 +11,7 @@ const addSalary = async (req, res) => {
             basicSalary,
             allowances,
             deductions,
-            newSalary: totalSalary,
+            netSalary: totalSalary,
             payDate
         })
 
@@ -28,4 +28,21 @@ const addSalary = async (req, res) => {
     }
 }
 
-export {addSalary}
+const getSalary = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const salary = await Salary.find({employeeId: id}).populate('employeeId', 'employeeId')
+        return res.status(200).json({
+            success: true, 
+            salary
+        })
+
+    } catch(error) {
+        return res.status(500).json({
+            success: false,
+            error: "Salary Get Server Error"
+        })
+    }
+}
+
+export {addSalary, getSalary}
