@@ -87,7 +87,11 @@ const getEmployees = async (req, res) => {
 const getEmployee = async (req, res) => {
     const {id} = req.params;
     try {
-        const employee = await Employee.findById({_id: id}).populate("userId", "name email profileImage").populate("department", "dep_name")
+        let employee;
+        employee = await Employee.findById({_id: id}).populate("userId", "name email profileImage").populate("department", "dep_name")
+        if (!employee){
+        employee = await Employee.findOne({userId: id}).populate("userId", "name email profileImage").populate("department")
+        }
         return res.status(200).json({success: true, employee})
     } catch(error){
         return res.status(500).json({
