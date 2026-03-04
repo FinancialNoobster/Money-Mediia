@@ -7,6 +7,7 @@ A full-stack Employee Management Software built using the MERN stack for interna
 3. Give Android APP and Desktop App 
 4. Give IOS App Also 
 5. Also Bio metric Scan
+6. We provide full instalmnent and each and everything. 
 ---
 
 ## 🚀 Features
