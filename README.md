@@ -2,6 +2,11 @@
 
 A full-stack Employee Management Software built using the MERN stack for internal team management at Money Mediia.
 
+1. Add Email Feature And Telegram
+2. Give Website to track 
+3. Give Android APP and Desktop App 
+4. Give IOS App Also 
+5. Also Bio metric Scan
 ---
 
 ## 🚀 Features
