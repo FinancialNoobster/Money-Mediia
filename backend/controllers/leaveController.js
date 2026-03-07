@@ -1,20 +1,18 @@
+import Leave from "../models/Leave.js"
 
 const addLeave = async (req, res) => {
     try {
         const {userId, leaveType, startDate, endDate, reason} = req.body
 
-        const totalSalary = parseInt(basicSalary) + parseInt(allowances) - parseInt(deductions)
-
-        const newSalary = new Salary({
-            employeeId,
-            basicSalary,
-            allowances,
-            deductions,
-            netSalary: totalSalary,
-            payDate
+        const newLeave = new Leave({
+            employeeId: userId,
+            leaveType,
+            startDate,
+            endDate,
+            reason
         })
 
-        await newSalary.save()
+        await newLeave.save()
 
         return res.status(200).json({
             success: true
@@ -22,7 +20,7 @@ const addLeave = async (req, res) => {
     } catch(error) {
         return res.status(500).json({
             success: false,
-            error: "Salary Add Server Error"
+            error: "Leave Add Server Error"
         })
     }
 }

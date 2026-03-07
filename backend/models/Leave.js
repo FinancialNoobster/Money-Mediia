@@ -15,8 +15,11 @@ const leaveSchema = new Schema({
         enum: ["Pending", "Approved", "Rejected"],
         default: "Pending",
     },
-    appliedAt: {type: Data, default: Data.now},
-    updatedAt: {type: Data, default: Data.now},
+    appliedAt: {type: Date, default: Date.now},
+    updatedAt: {type: Date, default: Date.now},
 
 
 })
+
+const Leave = mongoose.model("Leave", leaveSchema)
+export default Leave;
