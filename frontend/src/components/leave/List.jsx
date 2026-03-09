@@ -8,8 +8,7 @@ import axios from 'axios';
 const List = () => {
     const {user} = useAuth()
     const [leaves, setLeaves] = useState([])
-
-
+    let sno = 1;
 
     const fetchLeaves = async () => {
         try {
@@ -30,8 +29,10 @@ const List = () => {
     };
 
     useEffect(() => {
-        fetchLeaves();
-    }, []);
+        if(user){
+            fetchLeaves()
+        }
+    }, [user])
 
   return (
     <div className='p-5'>
