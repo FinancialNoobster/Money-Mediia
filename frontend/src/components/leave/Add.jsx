@@ -44,7 +44,7 @@ const Add = () => {
                     <select name="leaveType"
                     onChange={handleChange} 
                     className='mt-1 p-2 block w-full border border-gray-300 rounded-md'required>
-                        <option value="">Select Department</option>
+                        <option value="">Select Leave Type</option>
                         <option value="Sick Leave">Sick Leave</option>
                         <option value="Casual Leave"> Casual Leave</option>
                         <option value="Half Day Leave"> Half Day Leave</option>
