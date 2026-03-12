@@ -34,8 +34,8 @@ const Setting = () => {
     }
 
     try {
-      const response = await axios.post(
-        `http://localhost:5000/api/employee/change-password`,
+      const response = await axios.put(
+        `http://localhost:5000/api/setting/change-password`,
         setting,
         {
           headers: {
