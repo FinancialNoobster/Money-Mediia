@@ -55,6 +55,10 @@ const Table = () => {
         const data = leaves.filter(leave => leave.employeeId.toLowerCase().includes(e.target.value.toLowerCase()));
         setFilteredLeaves(data)
     }
+    const filterByButton = (status) => {
+        const data = leaves.filter(leave => leave.status === status);
+        setFilteredLeaves(data)
+    }
   return (
     <>
     {filteredLeaves ? (
@@ -66,13 +70,16 @@ const Table = () => {
         <input type="text" placeholder='Search By Employee Id' className='px-4 py-0.5 border'
         onChange={filterByInput}/>
         <div className='space-x-3'>
-            <button className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded'>
+            <button className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded'
+            onClick={() => filterByButton("Pending")}>
                 Pending
             </button>
-            <button className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded' >
+            <button className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded'
+            onClick={() => filterByButton("Approved")}>
                 Approved
             </button>
-            <button className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded'>
+            <button className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded'
+            onClick={() => filterByButton("Rejected")}>
                 Rejected
             </button>
         </div>
