@@ -9,6 +9,7 @@ import { Leavebuttons } from '../../utils/LeaveHelper.jsx'
 const Table = () => {
     const [leaves, setLeaves] = useState([])
     const [empLoading, setEmpLoading] = useState(true)
+    const [filteredLeaves, setFilteredLeaves] = useState([])
     const fetchLeaves = async () => {
         try {
         const response = await axios.get('http://localhost:5000/api/leave',{
@@ -35,6 +36,7 @@ const Table = () => {
             action: <Leavebuttons _id={leave._id} />
             }));
           setLeaves(data)
+          setFilteredLeaves(data)
         }
       } catch (error){
         if(error.response && !error.response.data.success){
@@ -48,15 +50,21 @@ const Table = () => {
         console.log("fetching leaves")
         fetchLeaves()
     }, [])
+
+    const filterByInput = (e) => {
+        const data = leaves.filter(leave => leave.employeeId.toLowerCase().includes(e.target.value.toLowerCase()));
+        setFilteredLeaves(data)
+    }
   return (
     <>
-    {leaves ? (
+    {filteredLeaves ? (
       <div className='p-5'>
         <div className='text-center '>
         <h3 className='text-2xl font-bold'>Manage Leaves</h3>
        </div>
         <div className='flex justify-between items-center '>
-        <input type="text" placeholder='Search By Employee Name' className='px-4 py-0.5 border'/>
+        <input type="text" placeholder='Search By Employee Id' className='px-4 py-0.5 border'
+        onChange={filterByInput}/>
         <div className='space-x-3'>
             <button className='px-2 py-1 bg-teal-600 text-white hover:bg-teal-700 rounded'>
                 Pending
@@ -70,7 +78,7 @@ const Table = () => {
         </div>
       </div>
       <div className='mt-3'>
-      <DataTable columns={columns} data={leaves} pagination fixedHeader highlightOnHover />
+      <DataTable columns={columns} data={filteredLeaves} pagination fixedHeader highlightOnHover />
      </div>
     </div>
     ) : <div>Loading.....</div>}
