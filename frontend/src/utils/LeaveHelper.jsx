@@ -47,7 +47,7 @@ export const columns = [
 export const Leavebuttons = ({ _id }) => {
     const navigate = useNavigate()
     const handleView = () => {
-        navigate(`/admin-dashboard/leave/${_id}`);
+        navigate(`/admin-dashboard/leaves/${_id}`);
     };
 
     return (
