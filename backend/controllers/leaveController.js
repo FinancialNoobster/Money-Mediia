@@ -109,4 +109,17 @@ const updateLeave = async (req, res) => {
     }
 }
 
-export {addLeave, getLeave, getLeaves, getLeaveDetail, updateLeave}
+const getLeaveDetails = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const leaves = await Leave.find({employeeId: id})
+        return res.status(200).json({success: true, leaves})
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            error: "Leaves get Server Error"
+        })
+    }
+}
+
+export {addLeave, getLeave, getLeaves, getLeaveDetail, updateLeave, getLeaveDetails}
