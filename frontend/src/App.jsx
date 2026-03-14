@@ -21,6 +21,7 @@ import AddLeave from "./components/leave/Add.jsx"
 import Setting from "./components/EmployeeDashboard/Setting.jsx";
 import Table from "./components/leave/Table.jsx";
 import LeaveDetail from "./components/leave/Details.jsx";
+import AdminSetting from "./components/dashboard/Setting.jsx"
 
 function App() {
   return(
@@ -62,6 +63,8 @@ function App() {
             <Route path="/admin-dashboard/leaves" element= {<Table />}>
             </Route>
             <Route path="/admin-dashboard/leaves/:id" element= {<LeaveDetail />}>
+            </Route>
+            <Route path="/admin-dashboard/setting" element= {<AdminSetting />}>
             </Route>
         </Route>
         <Route 
